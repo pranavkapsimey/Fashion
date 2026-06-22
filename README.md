@@ -34,8 +34,10 @@ fashion-store/
 | Backend  | Node.js, Express, Mongoose, `mongodb-memory-server`, Multer, JWT, bcrypt |
 | Fonts    | Playfair Display (headings), Inter (body) via Google Fonts |
 
-The database is an **in-memory MongoDB** — nothing to install or configure. It is
-seeded with 10 sample products and 3 sample orders on every server start.
+By default the database is an **in-memory MongoDB** — nothing to install or
+configure. It is seeded with 10 sample products and 3 sample orders on startup.
+For deployment, set a `MONGODB_URI` (e.g. MongoDB Atlas) to use a persistent
+database instead — see [Deployment](#deployment).
 
 ---
 
@@ -122,6 +124,24 @@ Base URL: `http://localhost:5000`
 Admin endpoints require an `Authorization: Bearer <token>` header.
 
 ---
+
+## Deployment
+
+The backend is deploy-ready (`server.js` reads `process.env.PORT`) and the
+frontend reads its API base from `VITE_API_URL`.
+
+**Backend (Render)** — Root Directory `backend`, Build `npm install`, Start
+`npm start`. Set env vars `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and
+`MONGODB_URI` (a MongoDB Atlas string — recommended so data persists; without
+it the in-memory DB resets on every restart/spin-down).
+
+**Frontend (Vercel)** — Root Directory `frontend`, framework Vite. Set
+`VITE_API_URL` to the Render backend URL (no trailing slash).
+
+> Note: on hosts without `MONGODB_URI`, the in-memory server downloads a
+> MongoDB 7.0.x binary at runtime (pinned in `config/db.js` for Debian 12
+> compatibility). Uploaded images are also lost on restart unless you use
+> persistent storage — another reason to prefer Atlas for real deployments.
 
 ## Notes
 
