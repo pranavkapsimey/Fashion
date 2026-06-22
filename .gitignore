@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+
+# Build output
+dist/
+
+# Uploaded images (keep the folder, ignore contents)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs / OS
+*.log
+.DS_Store

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bone text-ink font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-ink text-white px-7 py-3 text-sm uppercase tracking-widest transition hover:bg-stone disabled:opacity-50;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-ink text-ink px-7 py-3 text-sm uppercase tracking-widest transition hover:bg-ink hover:text-white;
+  }
+  .input {
+    @apply w-full border border-stone/40 bg-white px-4 py-3 text-sm focus:border-ink focus:outline-none;
+  }
+  .label {
+    @apply block text-xs uppercase tracking-widest text-stone mb-2;
+  }
+}
